@@ -69,7 +69,7 @@ const DynamicTable = () => {
                 confirmButtonText: 'Look up',
                 showLoaderOnConfirm: true,
                 preConfirm: (name) => {
-                    return fetch('http://localhost:4000/api/seat/create/' + name, {
+                    return fetch('https://api.akkanop.in.th/api/seat/create/' + name, {
                         method: 'POST',
                         body: JSON.stringify({
                             "seatZone": seatZone

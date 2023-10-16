@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 
 import { motion } from 'framer-motion';
 import { io } from 'socket.io-client';
-const socket = io('http://localhost:4000');
+const socket = io('https://api.akkanop.in.th');
 
 
 function Seat({ data }) {
@@ -108,7 +108,7 @@ function Seat({ data }) {
 
 export async function getServerSideProps(context) {
     const { value } = context.query;
-    const res = await fetch('http://localhost:4000/api/seat?name=' + value);
+    const res = await fetch('https://api.akkanop.in.th/api/seat?name=' + value);
     const data = await res.json();
 
     return {

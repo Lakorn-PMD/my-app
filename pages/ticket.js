@@ -56,7 +56,7 @@ export default function Index({ data }) {
 };
 
 export async function getServerSideProps() {
-    const res = await fetch('http://localhost:4000/api/seat');
+    const res = await fetch('https://api.akkanop.in.th/api/seat');
     const data = await res.json();
     if (!res.ok) {
         return {
