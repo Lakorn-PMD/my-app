@@ -43,7 +43,7 @@ export default function Index({ data }) {
                         <select onChange={handleSelectChange} id="countries" value={optionValue} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                             <option defaultValue={""} selected disabled hidden>เลือกรอบ</option>
                             {data.map((i) => (
-                                <option value={i.name}>{i.name}</option>
+                                <option key={i.name} value={i.name}>{i.name}</option>
                             ))}
                         </select>
                         <button onClick={handleSubmit} className='mt-4 px-4 py-1 bg-blue-500 hover:bg-blue-700 text-white rounded-lg '>ยืนยัน</button>
