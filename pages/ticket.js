@@ -13,7 +13,7 @@ export default function Index({ data }) {
     const [optionValue, setOptionValue] = useState(null);
 
     const router = useRouter();
-    console.log(session)
+
     const handleSelectChange = (event) => {
         event.preventDefault();
         setOptionValue(event.target.value);
