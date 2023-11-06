@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import { Navbar } from '@/Components/Navbar';
+import { CartIconComponents } from '@/Components/CartIconComponents';
 
 import Container from '@mui/material/Container';
 
@@ -38,16 +39,15 @@ function Seat({ data }) {
                 uniqueRows.add(cell.row);
             });
         });
-
         const handleOnSelectSeat = (key) => {
-            const isSeatSelected = selectSeat.some((seatCell) => seatCell === key);
+            const isSeatSelected = selectSeat.some((seatCell) => seatCell.seat === key);
+
             if (isSeatSelected) {
-                setSelectSeat(selectSeat.filter((seatCell) => !(seatCell === key)))
+                setSelectSeat(selectSeat.filter((seatCell) => seatCell.seat !== key));
             } else {
-                socket.emit('updateSeat', key);
-                setSelectSeat([...selectSeat, key])
+                setSelectSeat([...selectSeat, { zone: seatZone, seat: key }]);
             }
-        }
+        };
 
         return (
             <>
@@ -63,7 +63,7 @@ function Seat({ data }) {
                                 </span>
                             </div>
                             {checkZone[0].cells.filter((cell) => cell.row === index).map((cell) => (
-                                <button onClick={(e) => handleOnSelectSeat(cell.alphabetID)} key={cell.alphabetID} className={`w-8 h-8 ${cell.isSold ? "bg-red-500" : "bg-gray-300"} ${selectSeat.some((seatCell) => seatCell === cell.alphabetID) ? "bg-green-500" : "bg-gray-300"} rounded-full text-blue-800 flex items-center justify-center`} disabled={cell.isSold}>
+                                <button onClick={(e) => handleOnSelectSeat(cell.alphabetID)} key={cell.alphabetID} className={`w-8 h-8 ${cell.isSold ? "bg-red-500" : "bg-gray-300"} ${selectSeat.some((seatCell) => seatCell.seat === cell.alphabetID) ? "bg-green-500" : "bg-gray-300"} rounded-full text-blue-800 flex items-center justify-center`} disabled={cell.isSold}>
                                 </button>
                             ))}
                         </div>
@@ -101,6 +101,8 @@ function Seat({ data }) {
                         ))}
                     </div>
                 )}
+                <CartIconComponents seat={selectSeat} name={data.name} />
+
             </Container>
         </main>
     )
