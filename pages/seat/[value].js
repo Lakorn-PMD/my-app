@@ -7,8 +7,8 @@ import { CartIconComponents } from '@/Components/CartIconComponents';
 import Container from '@mui/material/Container';
 
 import { motion } from 'framer-motion';
-import { io } from 'socket.io-client';
-const socket = io('https://api.akkanop.in.th');
+// import { io } from 'socket.io-client';
+// const socket = io('https://api.akkanop.in.th');
 
 
 function Seat({ data }) {
